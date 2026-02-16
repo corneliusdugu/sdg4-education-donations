@@ -1,11 +1,25 @@
 const express = require("express");
 const path = require("path");
 const dotenv = require("dotenv");
+const cors = require("cors");
+const morgan = require("morgan");
 const connectDB = require("./config/db");
 
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
+
+// Core middleware
+app.use(express.json());
+app.use(morgan("dev"));
+
+// CORS (dev-friendly; in production we serve client from same origin)
+app.use(
+  cors({
+    origin: process.env.CODIO_CLIENT_ORIGIN || true,
+    credentials: true,
+  })
+);
 
 // Health check (used to confirm server is running)
 app.get("/api/health", (req, res) => {
