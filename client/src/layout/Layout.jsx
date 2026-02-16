@@ -1,6 +1,6 @@
 import { Outlet } from "react-router-dom";
-import SiteHeader from "../ui/SiteHeader";
-import SiteFooter from "../ui/SiteFooter";
+import SiteHeader from "../ui/SiteHeader.jsx";
+import SiteFooter from "../ui/SiteFooter.jsx";
 
 export default function Layout() {
   return (

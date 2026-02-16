@@ -1,0 +1,16 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="True Tuition favicon">
+  <!-- Transparent background (no rect) -->
+
+  <!-- Graduation cap (Accent: White) -->
+  <path fill="#FFFFFF" d="M176 120 L256 80 L336 120 L256 160 Z"></path>
+  <path fill="#FFFFFF" d="M208 160 H304 V196 H208 Z"></path>
+  <!-- Tassel (filled shapes, no strokes) -->
+  <path fill="#FFFFFF" d="M340 132 H372 V232 H340 Z"></path>
+  <circle cx="356" cy="248" r="20" fill="#FFFFFF"></circle>
+
+  <!-- "TT" monogram (Primary: Green) -->
+  <!-- Left T -->
+  <path fill="#0B7A3B" d="M88 180 H264 V260 H216 V420 H136 V260 H88 Z"></path>
+  <!-- Right T -->
+  <path fill="#0B7A3B" d="M248 180 H424 V260 H376 V420 H296 V260 H248 Z"></path>
+</svg>

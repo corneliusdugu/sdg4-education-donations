@@ -36,8 +36,10 @@ export default function HeroSlider({ slides = [], intervalMs = 3500 }) {
         />
       ))}
 
+      {/* gradient overlay for readability */}
       <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/20 to-transparent" />
 
+      {/* dots */}
       {safeSlides.length > 1 && (
         <div className="absolute bottom-4 left-4 flex gap-2">
           {safeSlides.map((_, i) => (
