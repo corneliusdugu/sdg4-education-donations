@@ -1,3 +1,4 @@
+// client/src/ui/SiteHeader.jsx
 import { Link, NavLink, useNavigate } from "react-router-dom";
 import { clearToken, getToken } from "../api/api";
 
@@ -90,6 +91,7 @@ export default function SiteHeader() {
         </div>
       </div>
 
+      {/* Mobile nav */}
       <div className="md:hidden border-t">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-4 py-2">
           <NavLink className="text-sm font-semibold text-slate-700" to="/">
@@ -101,7 +103,10 @@ export default function SiteHeader() {
           <NavLink className="text-sm font-semibold text-slate-700" to="/donate">
             Donate
           </NavLink>
-          <NavLink className="text-sm font-semibold text-slate-700" to="/dashboard">
+          <NavLink
+            className="text-sm font-semibold text-slate-700"
+            to="/dashboard"
+          >
             Dashboard
           </NavLink>
         </div>
