@@ -1,38 +1,53 @@
-const TOKEN_KEY = "sdg4_token";
+const TOKEN_KEY = "tt_token";
 
-export function getToken() {
-  try {
-    return localStorage.getItem(TOKEN_KEY);
-  } catch {
-    return null;
-  }
-}
+// Prefer explicit env base, otherwise use "" (same-origin) so Vite proxy can handle /api
+const ENV_BASE = (import.meta?.env?.VITE_API_BASE_URL || "").trim();
+export const API_BASE_URL = ENV_BASE || "";
 
 export function setToken(token) {
   localStorage.setItem(TOKEN_KEY, token);
+}
+
+export function getToken() {
+  return localStorage.getItem(TOKEN_KEY);
 }
 
 export function clearToken() {
   localStorage.removeItem(TOKEN_KEY);
 }
 
-function getBaseUrl() {
-  return import.meta.env.VITE_API_BASE_URL || "";
+function buildUrl(path) {
+  // Ensure leading slash
+  const p = path.startsWith("/") ? path : `/${path}`;
+  return `${API_BASE_URL}${p}`;
 }
 
-async function handleResponse(res) {
-  const text = await res.text();
-  let data = null;
+async function request(method, path, body, authRequired) {
+  const headers = { "Content-Type": "application/json" };
 
+  if (authRequired) {
+    const token = getToken();
+    if (token) headers.Authorization = `Bearer ${token}`;
+  }
+
+  const res = await fetch(buildUrl(path), {
+    method,
+    headers,
+    body: body ? JSON.stringify(body) : undefined,
+  });
+
+  const text = await res.text();
+  let data = {};
   try {
-    data = text ? JSON.parse(text) : null;
+    data = text ? JSON.parse(text) : {};
   } catch {
-    data = null;
+    data = { message: text || "" };
   }
 
   if (!res.ok) {
     const msg =
-      (data && (data.error || data.message)) ||
+      data?.message ||
+      data?.error ||
       `Request failed (${res.status})`;
     const err = new Error(msg);
     err.statusCode = res.status;
@@ -42,45 +57,14 @@ async function handleResponse(res) {
   return data;
 }
 
-export async function apiGet(path, authed = true) {
-  const headers = { "Content-Type": "application/json" };
-  if (authed) {
-    const token = getToken();
-    if (token) headers.Authorization = `Bearer ${token}`;
-  }
-
-  const res = await fetch(`${getBaseUrl()}${path}`, { headers });
-  return handleResponse(res);
+export function apiGet(path, authRequired = true) {
+  return request("GET", path, null, authRequired);
 }
 
-export async function apiPost(path, body, authed = true) {
-  const headers = { "Content-Type": "application/json" };
-  if (authed) {
-    const token = getToken();
-    if (token) headers.Authorization = `Bearer ${token}`;
-  }
-
-  const res = await fetch(`${getBaseUrl()}${path}`, {
-    method: "POST",
-    headers,
-    body: JSON.stringify(body || {}),
-  });
-
-  return handleResponse(res);
+export function apiPost(path, body, authRequired = true) {
+  return request("POST", path, body, authRequired);
 }
 
-export async function apiPut(path, body, authed = true) {
-  const headers = { "Content-Type": "application/json" };
-  if (authed) {
-    const token = getToken();
-    if (token) headers.Authorization = `Bearer ${token}`;
-  }
-
-  const res = await fetch(`${getBaseUrl()}${path}`, {
-    method: "PUT",
-    headers,
-    body: JSON.stringify(body || {}),
-  });
-
-  return handleResponse(res);
+export function apiPut(path, body, authRequired = true) {
+  return request("PUT", path, body, authRequired);
 }
