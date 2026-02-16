@@ -1,3 +1,4 @@
+// client/src/ui/SiteFooter.jsx
 import { Link } from "react-router-dom";
 
 export default function SiteFooter() {
@@ -5,6 +6,7 @@ export default function SiteFooter() {
     <footer className="border-t border-slate-200 bg-white">
       <div className="mx-auto max-w-6xl px-4 py-10">
         <div className="grid gap-10 md:grid-cols-3">
+          {/* Brand + Mission */}
           <div>
             <div className="flex items-center gap-3">
               <div className="grid h-10 w-10 place-items-center rounded-xl bg-green-700 text-white font-extrabold">
@@ -26,6 +28,7 @@ export default function SiteFooter() {
             </div>
           </div>
 
+          {/* Quick links */}
           <div>
             <div className="text-sm font-extrabold text-slate-900">Quick links</div>
             <div className="mt-3 grid gap-2 text-sm">
@@ -50,6 +53,7 @@ export default function SiteFooter() {
             </div>
           </div>
 
+          {/* Contact */}
           <div>
             <div className="text-sm font-extrabold text-slate-900">Contact</div>
             <div className="mt-3 space-y-2 text-sm text-slate-600">
