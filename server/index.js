@@ -5,6 +5,8 @@ const cors = require("cors");
 const morgan = require("morgan");
 const connectDB = require("./config/db");
 
+const authRoutes = require("./routes/authRoutes");
+
 dotenv.config({ path: path.join(__dirname, ".env") });
 
 const app = express();
@@ -21,10 +23,13 @@ app.use(
   })
 );
 
-// Health check (used to confirm server is running)
+// Health check
 app.get("/api/health", (req, res) => {
   res.json({ ok: true });
 });
+
+// Routes
+app.use("/api/auth", authRoutes);
 
 // IMPORTANT: export app for tests
 module.exports = app;
