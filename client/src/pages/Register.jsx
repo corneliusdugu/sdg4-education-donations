@@ -1,4 +1,5 @@
 // client/src/pages/Register.jsx
+
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { apiPost, setToken } from "../api/api";
@@ -48,8 +49,7 @@ export default function Register() {
     } catch (err) {
       setStatus("");
 
-      const rawMsg =
-        err && err.message ? String(err.message) : "Registration failed";
+      const rawMsg = err && err.message ? String(err.message) : "Registration failed";
       const lowered = rawMsg.toLowerCase();
 
       // Friendlier messages for common register failures
@@ -93,48 +93,38 @@ export default function Register() {
             </h1>
 
             <p className="mt-2 text-sm text-slate-600">
-              Create an account to donate toward <b>Quality Education</b> and
-              track your impact over time.
+              Create an account to donate toward <b>Quality Education</b> and track your impact over
+              time.
             </p>
 
             <div className="mt-6 grid gap-3 sm:grid-cols-2">
               <div className="rounded-2xl border border-green-100 bg-white p-4">
                 <div className="text-xs text-slate-500">SDG4 only</div>
-                <div className="mt-1 text-sm font-bold text-slate-900">
-                  Focused Giving
-                </div>
+                <div className="mt-1 text-sm font-bold text-slate-900">Focused Giving</div>
               </div>
               <div className="rounded-2xl border border-green-100 bg-white p-4">
                 <div className="text-xs text-slate-500">Dashboard</div>
-                <div className="mt-1 text-sm font-bold text-slate-900">
-                  Track Donations
-                </div>
+                <div className="mt-1 text-sm font-bold text-slate-900">Track Donations</div>
               </div>
             </div>
 
             <div className="mt-6 rounded-2xl bg-green-50 p-4 text-sm text-slate-700 ring-1 ring-green-100">
               <p className="font-semibold text-slate-900">What you can do</p>
               <p className="mt-1 text-slate-600">
-                Donate for learning materials, school supplies, and safe classroom
-                support — all linked to your account.
+                Donate for learning materials, school supplies, and safe classroom support — all linked
+                to your account.
               </p>
             </div>
           </div>
 
           {/* RIGHT */}
           <div className="rounded-3xl border border-slate-200 bg-white p-8 shadow-sm">
-            <h2 className="text-lg font-extrabold text-slate-900">
-              Create account
-            </h2>
-            <p className="mt-1 text-sm text-slate-600">
-              Enter your details to get started.
-            </p>
+            <h2 className="text-lg font-extrabold text-slate-900">Create account</h2>
+            <p className="mt-1 text-sm text-slate-600">Enter your details to get started.</p>
 
             <form onSubmit={handleRegister} className="mt-6 grid gap-4">
               <div>
-                <label className="text-sm font-semibold text-slate-700">
-                  Full name
-                </label>
+                <label className="text-sm font-semibold text-slate-700">Full name</label>
                 <input
                   className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-green-200"
                   value={name}
@@ -146,9 +136,7 @@ export default function Register() {
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700">
-                  Email
-                </label>
+                <label className="text-sm font-semibold text-slate-700">Email</label>
                 <input
                   className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-green-200"
                   value={email}
@@ -160,9 +148,7 @@ export default function Register() {
               </div>
 
               <div>
-                <label className="text-sm font-semibold text-slate-700">
-                  Password
-                </label>
+                <label className="text-sm font-semibold text-slate-700">Password</label>
                 <input
                   className="mt-1 w-full rounded-xl border border-slate-200 bg-white px-3 py-2 outline-none focus:ring-2 focus:ring-green-200"
                   value={password}
@@ -187,14 +173,9 @@ export default function Register() {
                   {error && (
                     <div className="rounded-2xl border border-rose-200 bg-rose-50 px-4 py-3 text-sm text-rose-800">
                       <b>Error:</b> {error}
-                      {String(error)
-                        .toLowerCase()
-                        .includes("already registered") && (
+                      {String(error).toLowerCase().includes("already registered") && (
                         <div className="mt-2">
-                          <Link
-                            to="/login"
-                            className="font-semibold text-green-700 hover:underline"
-                          >
+                          <Link to="/login" className="font-semibold text-green-700 hover:underline">
                             Go to Login
                           </Link>
                         </div>
@@ -206,10 +187,7 @@ export default function Register() {
 
               <p className="text-sm text-slate-600">
                 Already have an account?{" "}
-                <Link
-                  to="/login"
-                  className="font-semibold text-green-700 hover:underline"
-                >
+                <Link to="/login" className="font-semibold text-green-700 hover:underline">
                   Sign in
                 </Link>
               </p>
