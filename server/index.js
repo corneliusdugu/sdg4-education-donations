@@ -6,6 +6,7 @@ const morgan = require("morgan");
 const connectDB = require("./config/db");
 
 const authRoutes = require("./routes/authRoutes");
+const donationRoutes = require("./routes/donationRoutes");
 
 dotenv.config({ path: path.join(__dirname, ".env") });
 
@@ -30,6 +31,7 @@ app.get("/api/health", (req, res) => {
 
 // Routes
 app.use("/api/auth", authRoutes);
+app.use("/api/donations", donationRoutes);
 
 // IMPORTANT: export app for tests
 module.exports = app;
