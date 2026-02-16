@@ -6,7 +6,7 @@ export default function Login() {
   const navigate = useNavigate();
 
   const [email, setEmail] = useState("testuser@example.com");
-  const [password, setPassword] = useState("newpass123");
+  const [password, setPassword] = useState("Computer0070");
   const [status, setStatus] = useState("");
   const [error, setError] = useState("");
 

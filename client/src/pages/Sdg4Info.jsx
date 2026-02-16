@@ -1,3 +1,5 @@
+// client/src/pages/Sdg4Info.jsx
+
 import { Link } from "react-router-dom";
 
 export default function Sdg4Info() {
